@@ -1,17 +1,21 @@
 import React from "react";
 import { connect } from "react-refetch";
-import { Card } from "antd";
+import { Card, Skeleton } from "antd";
 import uuidv4 from "uuid/v4";
 import G2 from "@antv/g2";
+
+import { generateData } from "../util";
 
 @connect(() => {
   const url = "http://127.0.0.1:9000/api";
   return {
-    infoFetch: url,
-    andThen: () => {
-      return {
-        query: url
-      };
+    infoFetch: {
+      url,
+      andThen: () => {
+        return {
+          query: url
+        };
+      }
     }
   };
 })
@@ -20,60 +24,38 @@ export default class ChartCard extends React.Component {
     super(props);
     this.containerId = uuidv4();
   }
-  componentDidMount() {
-    const data = [
-      {
-        year: "1991",
-        value: 3
-      },
-      {
-        year: "1992",
-        value: 4
-      },
-      {
-        year: "1993",
-        value: 3.5
-      },
-      {
-        year: "1994",
-        value: 5
-      },
-      {
-        year: "1995",
-        value: 4.9
-      },
-      {
-        year: "1996",
-        value: 6
-      },
-      {
-        year: "1997",
-        value: 7
-      },
-      {
-        year: "1998",
-        value: 9
-      },
-      {
-        year: "1999",
-        value: 13
-      }
-    ];
-
+  renderChart() {
+    const data = generateData();
     const chart = new G2.Chart({
       container: this.containerId,
       forceFit: true,
       height: 300
     });
-
+    chart.scale({
+      time: {
+        type: "time",
+        mask: "HH:mm"
+      }
+    });
     chart.source(data);
-    chart.line().position("year*value");
+    chart.line().position("time*value");
     chart.render();
   }
+  componentDidUpdate(prevProps) {
+    if (
+      prevProps.query &&
+      prevProps.query.pending &&
+      this.props.query.fulfilled
+    ) {
+      this.renderChart();
+    }
+  }
   render() {
-    const { className, style } = this.props;
+    const { className, style, query } = this.props;
+    const isLoading = !query || (query && query.pending);
     return (
       <Card className={className} style={style}>
+        {isLoading && <Skeleton active />}
         <div id={this.containerId} />
       </Card>
     );

@@ -1,4 +1,5 @@
 import React from "react";
+import { connect } from "react-refetch";
 import { Card } from "antd";
 
 import ChartCard from "../ChartCard";
@@ -11,7 +12,7 @@ export default class App extends React.Component {
   render() {
     return (
       <div>
-        {[...Array(20).keys()].map((item, index) => {
+        {[...Array(30).keys()].map((item, index) => {
           return <ChartCard key={index} className="ChartCard" />;
         })}
       </div>
