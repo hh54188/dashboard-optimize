@@ -7,7 +7,7 @@ import G2 from "@antv/g2";
 import { generateData } from "../util";
 
 @connect(() => {
-  const url = "http://127.0.0.1:9000/api";
+  const url = "http://127.0.0.1:9090/api";
   return {
     infoFetch: {
       url,

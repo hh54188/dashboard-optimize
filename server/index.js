@@ -13,6 +13,6 @@ server.use((req, res, next) => {
 });
 server.use(router);
 
-server.listen(9000, () => {
+server.listen(9090, () => {
   console.log("JSON Server is running");
 });
