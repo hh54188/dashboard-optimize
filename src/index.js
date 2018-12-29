@@ -3,5 +3,6 @@ import ReactDOM from "react-dom";
 import "antd/dist/antd.less";
 
 import App from "./App";
+import Demo from "./Demo";
 
-ReactDOM.render(<App />, document.querySelector("#app"));
+ReactDOM.render(<Demo />, document.querySelector("#app"));
