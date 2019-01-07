@@ -20,6 +20,7 @@ export default class PromiseDispatcher {
     this.isExecuting = false;
     this.execute();
   }
+  // .feed.then(promiseHandler => promise.then)
   feed(inputTasks) {
     const tasks = _.isArray(inputTasks) ? inputTasks : [inputTasks];
     if (this.isExecuting) {
