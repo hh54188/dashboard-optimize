@@ -1,12 +1,9 @@
 import _ from "lodash";
-import { isThisQuarter } from "date-fns";
 
-const utils = {
-  // https://stackoverflow.com/questions/27746304/how-do-i-tell-if-an-object-is-a-promise#answer-27746324
-  isPromiseObj: function(obj) {
-    return obj.then && _.isFunction(obj.then);
-  }
-};
+// https://stackoverflow.com/questions/27746304/how-do-i-tell-if-an-object-is-a-promise#answer-27746324
+function isPromiseObj(obj) {
+  return obj.then && _.isFunction(obj.then);
+}
 
 const defaultConfig = {
   maxParallelExecuteCount: 1
@@ -20,7 +17,6 @@ export default class PromiseDispatcher {
     this.isExecuting = false;
     this.execute();
   }
-  // .feed.then(promiseHandler => promise.then)
   feed(inputTasks) {
     const tasks = _.isArray(inputTasks) ? inputTasks : [inputTasks];
     if (this.isExecuting) {
@@ -47,7 +43,7 @@ export default class PromiseDispatcher {
               curPromise = Promise.reject(curPromise);
             }
 
-            if (!utils.isPromiseObj(curPromise)) {
+            if (!isPromiseObj(curPromise)) {
               curPromise = Promise.resolve(curPromise);
             }
             // ===== Compatible End =====
@@ -64,10 +60,8 @@ export default class PromiseDispatcher {
     }, Promise.resolve([]));
 
     finalPromise.then(result => {
-      console.log(result);
       this.tasks = [];
       this.isExecuting = false;
-      // debugger;
       if (this.waitingTasks && this.waitingTasks.length) {
         this.tasks = this.waitingTasks;
         this.waitingTasks = [];
@@ -76,44 +70,3 @@ export default class PromiseDispatcher {
     });
   }
 }
-
-const fakeSuccessAsyncTask = function() {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      resolve([]);
-    }, 1000 * 1);
-  });
-};
-
-const fakeFailedAsyncTask = function() {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      reject(new Error("Error Message"));
-    }, 1000 * 1);
-  });
-};
-
-const fakeSuccessSyncTask = function() {
-  return [];
-};
-
-const fakeFailedSyncTask = function() {
-  return new Error();
-};
-
-const dispatcherInstance = new PromiseDispatcher([
-  fakeSuccessAsyncTask,
-  fakeSuccessAsyncTask
-  // fakeSuccessAsyncTask,
-  // fakeSuccessAsyncTask,
-  // fakeSuccessAsyncTask,
-  // fakeSuccessAsyncTask
-  // fakeFailedAsyncTask,
-  // fakeFailedAsyncTask
-  // fakeSuccessSyncTask,
-  // fakeSuccessSyncTask,
-  // fakeFailedSyncTask,
-  // fakeFailedSyncTask,
-  // fakeSuccessAsyncTask,
-  // fakeFailedAsyncTask,
-]);

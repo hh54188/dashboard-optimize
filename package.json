@@ -42,6 +42,6 @@
     "start": "concurrently \"npm run dev\" \"npm run mock\"",
     "dev": "webpack-dev-server --config webpack.config.js",
     "mock": "node server",
-    "test": "mocha"
+    "test": "mocha --compilers js:babel-core/register"
   }
 }
