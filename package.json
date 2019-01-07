@@ -18,6 +18,7 @@
     "less": "^3.8.1",
     "less-loader": "^4.1.0",
     "mobx-react-devtools": "^6.0.3",
+    "mocha": "^5.2.0",
     "style-loader": "^0.23.1",
     "uglifyjs-webpack-plugin": "^2.0.1",
     "webpack": "^4.25.1",
@@ -40,6 +41,7 @@
   "scripts": {
     "start": "concurrently \"npm run dev\" \"npm run mock\"",
     "dev": "webpack-dev-server --config webpack.config.js",
-    "mock": "node server"
+    "mock": "node server",
+    "test": "mocha"
   }
 }

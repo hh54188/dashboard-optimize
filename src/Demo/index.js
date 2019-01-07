@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
 
-import PromiseDispatcher from './PromiseDispatcher'
+import PromiseDispatcher from "../PromiseDispatcher";
 
 export default class Demo extends React.Component {
   constructor(props) {
