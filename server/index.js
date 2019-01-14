@@ -1,6 +1,6 @@
 const path = require("path");
 
-const DELAY = 1000 * 2;
+const DELAY = 1000 * 0.3;
 
 const jsonServer = require("json-server");
 const server = jsonServer.create();

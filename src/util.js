@@ -1,3 +1,5 @@
+import React from "react";
+
 const randomInRange = () => {
   const min = 100;
   const max = 1000;
@@ -18,3 +20,17 @@ export const generateData = () => {
 
   return result;
 };
+
+export function withMobxModel(injectFunction) {
+  return function(ComposedComponent) {
+    return class extends React.Component {
+      constructor(props) {
+        super(props);
+        this.injectedProps = injectFunction(props);
+      }
+      render() {
+        return <ComposedComponent {...this.props} {...this.injectedProps} />;
+      }
+    };
+  };
+}

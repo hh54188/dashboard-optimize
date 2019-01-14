@@ -8,9 +8,7 @@ export default class Demo extends React.Component {
     super(props);
   }
   componentDidMount() {
-    // axios.get("http://127.0.0.1:9090/api/").then(response => {
-    //   console.log(response);
-    // });
+    const promiseDispatcher = new PromiseDispatcher();
   }
   render() {
     return <div>DEMO</div>;

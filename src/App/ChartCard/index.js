@@ -4,7 +4,7 @@ import { Card, Skeleton } from "antd";
 import uuidv4 from "uuid/v4";
 import G2 from "@antv/g2";
 
-import { generateData } from "../util";
+import { generateData } from "../../util";
 
 @connect(() => {
   const url = "http://127.0.0.1:9090/api";
@@ -51,10 +51,10 @@ export default class ChartCard extends React.Component {
     }
   }
   render() {
-    const { className, style, query } = this.props;
+    const { query } = this.props;
     const isLoading = !query || (query && query.pending);
     return (
-      <Card className={className} style={style}>
+      <Card className="ChartCard">
         {isLoading && <Skeleton active />}
         <div id={this.containerId} />
       </Card>
