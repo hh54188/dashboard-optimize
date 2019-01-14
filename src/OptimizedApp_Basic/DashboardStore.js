@@ -17,6 +17,10 @@ export default class DashboardStore {
   constructor() {
     autorun(() => {
       this.reports.forEach(report => {
+        const requestMetaJob = () => {
+          report.loading = true;
+          return axios.get("http://127.0.0.1:9090/api");
+        };
         const requestDataJob = () => {
           report.loading = true;
           return axios.get("http://127.0.0.1:9090/api").then(() => {
@@ -24,7 +28,7 @@ export default class DashboardStore {
             report.data = generateData();
           });
         };
-        promiseDispatcher.feed([requestDataJob]);
+        promiseDispatcher.feed([requestMetaJob, requestDataJob]);
       });
     });
   }

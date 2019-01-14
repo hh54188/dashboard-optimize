@@ -1,3 +1,5 @@
 node_modules
 *.log
 yarn.lock
+public/*.js
+public/*.html

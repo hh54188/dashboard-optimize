@@ -20,7 +20,7 @@
     "mobx-react-devtools": "^6.0.3",
     "mocha": "^5.2.0",
     "style-loader": "^0.23.1",
-    "uglifyjs-webpack-plugin": "^2.0.1",
+    "uglifyjs-webpack-plugin": "^2.1.1",
     "webpack": "^4.25.1",
     "webpack-cli": "^3.1.2",
     "webpack-dev-server": "^3.1.10",
@@ -41,6 +41,7 @@
   },
   "scripts": {
     "start": "concurrently \"npm run dev\" \"npm run mock\"",
+    "build": "webpack --config webpack.config.prod.js",
     "dev": "webpack-dev-server --config webpack.config.js",
     "mock": "node server",
     "test": "mocha --compilers js:babel-core/register"
