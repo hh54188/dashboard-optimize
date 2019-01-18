@@ -47,8 +47,8 @@ export default class LongTask extends React.Component {
       }
     }
 
-    // FiveSecondslongTask();
-    chunk(Array(5).fill(OneSecondslongTask));
+    FiveSecondslongTask();
+    // chunk(Array(5).fill(OneSecondslongTask));
   }
   render() {
     return null;
