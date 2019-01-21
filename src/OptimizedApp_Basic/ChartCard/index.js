@@ -29,8 +29,10 @@ export default class ChartCard extends React.Component {
     chart.line().position("time*value");
     chart.render();
   }
-  componentDidUpdate() {
-    this.renderChart(this.props.data);
+  componentDidUpdate(prevProps) {
+    if (!prevProps.rendered && this.props.rendered) {
+      this.renderChart(this.props.data);
+    }
   }
   render() {
     const { loading } = this.props;

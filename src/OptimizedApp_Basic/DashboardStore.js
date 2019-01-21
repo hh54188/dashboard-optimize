@@ -11,7 +11,8 @@ export default class DashboardStore {
     return {
       loading: true,
       id: index,
-      data: []
+      data: [],
+      rendered: false
     };
   });
   constructor() {
@@ -28,7 +29,14 @@ export default class DashboardStore {
             report.data = generateData();
           });
         };
-        promiseDispatcher.feed([requestMetaJob, requestDataJob]);
+        const initializeRendering = () => {
+          report.rendered = true;
+        };
+        promiseDispatcher.feed([
+          requestMetaJob,
+          requestDataJob,
+          initializeRendering
+        ]);
       });
     });
   }

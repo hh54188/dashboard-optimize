@@ -20,8 +20,15 @@ export default class OptimizedApp extends React.Component {
     const { reports } = this.props.dashboardStore;
     return (
       <div>
-        {reports.map(({ id, data, loading }) => {
-          return <ChartCard key={id} data={data} loading={loading} />;
+        {reports.map(({ id, data, loading, rendered }) => {
+          return (
+            <ChartCard
+              key={id}
+              data={data}
+              loading={loading}
+              rendered={rendered}
+            />
+          );
         })}
       </div>
     );
