@@ -5,6 +5,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
   </head>
   <body>
+    <script>
+      !(function() {
+        if ("PerformanceLongTaskTiming" in window) {
+          var g = (window.__tti = { e: [] });
+          g.o = new PerformanceObserver(function(l) {
+            g.e = g.e.concat(l.getEntries());
+          });
+          g.o.observe({ entryTypes: ["longtask"] });
+        }
+      })();
+    </script>
     <div id="app" style="height: 100%;overflow: auto;"></div>
+    <script>
+      const observer = new PerformanceObserver(list => {
+        for (const entry of list.getEntries()) {
+          // `name` will be either 'first-paint' or 'first-contentful-paint'.
+          const metricName = entry.name;
+          const time = Math.round(entry.startTime + entry.duration);
+
+          console.log(metricName, time);
+        }
+      });
+
+      // Start observing paint entries.
+      observer.observe({ entryTypes: ["paint"] });
+    </script>
   </body>
 </html>

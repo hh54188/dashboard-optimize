@@ -38,6 +38,7 @@
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
     "react-refetch": "^2.0.2",
+    "tti-polyfill": "^0.2.2",
     "uuid": "^3.3.2"
   },
   "scripts": {
