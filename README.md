@@ -8,3 +8,4 @@ server: 9090
 - https://medium.com/@zizzamia/time-to-interactive-with-rum-862ba874392c
 - https://calibreapp.com/blog/time-to-interactive/
 - https://humanwhocodes.com/blog/2009/01/13/speed-up-your-javascript-part-1/
+- https://stackoverflow.com/questions/35876460/what-does-the-green-dotted-vertical-line-represent-in-the-flame-chart-on-the-tim

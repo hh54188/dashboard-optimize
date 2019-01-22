@@ -3,8 +3,8 @@ import ReactDOM from "react-dom";
 import "antd/dist/antd.less";
 
 // import App from "./App";
-// import App from "./OptimizedApp_Basic";
+import App from "./OptimizedApp_Basic";
 // import App from "./LongTask_TTI/interactive";
-import App from "./LongTask_TTI/load";
+// import App from "./LongTask_TTI/load";
 
 ReactDOM.render(<App />, document.querySelector("#app"));
